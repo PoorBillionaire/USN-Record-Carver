@@ -12,7 +12,7 @@ with open(filename, "rb") as f:
     offset = 0
     while True:
         try:
-            offset = m.find("\x00\x00\x02\x00\x00\x00", offset)
+            offset = m.index("\x00\x00\x02\x00\x00\x00", offset)
         except ValueError:
             m.close()
             break
