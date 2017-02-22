@@ -11,9 +11,9 @@ with open(filename, "rb") as f:
     m = mmap.mmap(f.fileno(), 0, access=mmap.ACCESS_READ)
     offset = 0
     while True:
-        offset = m.find("\x00\x00\x02\x00\x00\x00", offset)
-
-        if offset == -1:
+        try:
+            offset = m.find("\x00\x00\x02\x00\x00\x00", offset)
+        except ValueError:
             m.close()
             break
 
