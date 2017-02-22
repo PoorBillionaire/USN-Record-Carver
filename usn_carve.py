@@ -13,11 +13,13 @@ with open(filename, "rb") as f:
     while True:
         try:
             offset = m.index("\x00\x00\x02\x00\x00\x00", offset)
-        except ValueError:
+        except (ValueError):
             m.close()
             break
 
-        if m.find("\x00\x3c\x00", offset + 55, offset + 58) == -1:
+        try:
+            m.index("\x00\x3c\x00", offset + 55, offset + 58):
+        except (ValueError, IndexError):
             offset +=1
             continue
 
