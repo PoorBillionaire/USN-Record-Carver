@@ -1,32 +1,40 @@
-#!/usr/bin/python
-
 import os
 import sys
 import mmap
 import struct
+import contextlib
+from argparse import ArgumentParser
 
-filename = sys.argv[1]
+def carveUsnRecords(inFile, outFile):
+    with open(outFile, "ab") as o:
+        with open(inFile, "rb") as i:
+            with contextlib.closing(mmap.mmap(i.fileno(), 0, access=mmap.ACCESS_READ)) as m:
+                offset = 0
+                while True:
+                    offset = m.find(b'\x00\x00\x02\x00\x00\x00', offset)
+                    if offset == -1:
+                        break
 
-with open(filename, "rb") as f:
-    m = mmap.mmap(f.fileno(), 0, access=mmap.ACCESS_READ)
-    offset = 0
-    while True:
-        try:
-            offset = m.index("\x00\x00\x02\x00\x00\x00", offset)
-        except (ValueError):
-            m.close()
-            break
+                    if m.find(b'\x00\x3c\x00', offset + 55, offset + 58) == -1:
+                        offset +=1
+                        continue
 
-        try:
-            m.index("\x00\x3c\x00", offset + 55, offset + 58):
-        except (ValueError, IndexError):
-            offset +=1
-            continue
+                    offset -= 2
+                    recordLength = struct.unpack('<i', m[offset:offset + 4])[0]
+                    if recordLength < 62 or recordLength > 570:
+                        offset += 3
+                        continue
 
-        recordLength = struct.unpack("<i", m[offset - 2:offset + 2])[0]
-        if recordLength < 62 or recordLength > 570:
-            offset += 1
-            continue
+                    o.write(m[offset:offset + recordLength])
+                    offset += (recordLength)
 
-        sys.stdout.write(m[offset - 2:(offset - 2) + recordLength])
-        offset += (recordLength - 2)
+def main():
+    p = ArgumentParser()
+    p.add_argument("-f", "--file", help="Carve USN records from the given file")
+    p.add_argument("-o", "--outfile", help="Output to the given file")
+    args = p.parse_args()
+
+    carveUsnRecords(args.file, args.outfile)
+
+if __name__ == "__main__":
+    main()
