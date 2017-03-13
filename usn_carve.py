@@ -31,8 +31,8 @@ def carveUsnRecords(inFile, outFile):
 
 def main():
     p = ArgumentParser()
-    p.add_argument("-f", "--file", help="Carve USN records from the given file")
-    p.add_argument("-o", "--outfile", help="Output to the given file")
+    p.add_argument("-f", "--file", help="Carve USN records from the given file", required=True)
+    p.add_argument("-o", "--outfile", help="Output to the given file", required=True)
     args = p.parse_args()
 
     with open(args.outfile, "ab") as o:
