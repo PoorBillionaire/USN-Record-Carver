@@ -13,4 +13,4 @@ python:
 install:
   - python setup.py install
 script:
-  - usncarve -h
+  - usncarve.py -h
