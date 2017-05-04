@@ -20,7 +20,7 @@ def carveUsnRecords(inFile, outFile):
                 continue
 
             offset -= 2
-            recordLength = struct.unpack(b'<i', m[offset:offset + 4])[0]
+            recordLength = struct.unpack('<I', m[offset:offset + 4])[0]
             if recordLength < 62 or recordLength > 570:
                 offset += 3
                 continue
