@@ -6,6 +6,7 @@ usn.py -h
 usncarve.py -f usnjrnl.bin -o /tmp/usn-carved.bin
 echo "[ + ] Carve completed"
 echo "[ + ] Attempting to parse carved records"
+xxd /tmp/usn-carved.bin
 usn.py -f /tmp/usn-carved.bin -o /tmp/usn-parsed.txt
 cat /tmp/usn-parsed.txt
 rm /tmp/usn-parsed.txt
