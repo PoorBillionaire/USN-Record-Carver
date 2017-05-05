@@ -15,6 +15,7 @@ before_install:
   - cd
   - git clone https://github.com/PoorBillionaire/USN-Journal-Parser.git
   - cd USN-Journal-Parser
+  - git checkout dev
   - sudo python setup.py install
 install:
   - sudo python setup.py install
