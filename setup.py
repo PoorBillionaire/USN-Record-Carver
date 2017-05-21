@@ -9,7 +9,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='usncarve',
-    version='1.0.0',
+    version='1.0.1',
     description='A Python script to carve NTFS USN journal records from binary data',
     long_description=long_description,
     url='https://github.com/PoorBillionaire/USN-Record-Carver',
@@ -25,5 +25,5 @@ setup(
 
     keywords='DFIR NTFS USN Carve Forensics Incident Response Microsoft Windows',
     packages=find_packages(),
-    scripts=['usncarve.py'],
+    scripts=['usncarve/usncarve.py'],
 )
