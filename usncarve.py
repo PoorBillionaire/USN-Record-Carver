@@ -13,7 +13,7 @@ from argparse import ArgumentParser
 def validate_address_space(infile):
     if os.path.getsize(infile) > sys.maxsize:
         print("\n[ - ] ERROR: The running Python process does not present a " \
-            "large enough address space to accomodate memory mapping the " \
+            "large enough address space to accommodate memory mapping the " \
             "intput file. Try switching to 64-bit Python.\n",
             file=sys.stderr)
 
