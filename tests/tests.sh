@@ -3,7 +3,7 @@
 unzip tests/usnjrnl.zip
 usncarve.py -h
 usn.py -h
-usncarve/usncarve.py -f usnjrnl.bin -o /tmp/usn-carved.bin
+usncarve.py -f usnjrnl.bin -o /tmp/usn-carved.bin
 echo "[ + ] Carve completed"
 echo "[ + ] Attempting to parse carved records"
 xxd /tmp/usn-carved.bin
