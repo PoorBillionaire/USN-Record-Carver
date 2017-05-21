@@ -16,6 +16,6 @@ before_install:
   - git clone https://github.com/PoorBillionaire/USN-Record-Carver.git
   - git checkout dev
 install:
-  - sudo python USN-Record-Carver/setup.py install
+  - sudo python setup.py install
 script:
-  - sh USN-Record-Carver/tests/tests.sh
+  - sh tests/tests.sh
