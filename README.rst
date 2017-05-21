@@ -47,6 +47,6 @@ Using pip:
 +----------------------------------------------------------------------------------------+
 | Travis-CI                                                                              |
 +========================================================================================+
-|  .. image:: https://travis-ci.org/PoorBillionaire/USN-Record-Carver.svg?branch=master  |
+|  .. image:: https://travis-ci.org/PoorBillionaire/USN-Record-Carver.svg?branch=dev     |
 |   :target: https://travis-ci.org/PoorBillionaire/USN-Record-Carver                     |
 +----------------------------------------------------------------------------------------+
