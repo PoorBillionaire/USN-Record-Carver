@@ -5,19 +5,17 @@ python:
   - "3.3"
   - "3.4"
   - "3.5"
-  - "3.5-dev" # 3.5 development branch
+  - "3.5-dev"
   - "3.6"
-  - "3.6-dev" # 3.6 development branch
-  - "3.7-dev" # 3.7 development branch
-  - "nightly" # currently points to 3.7-dev
+  - "3.6-dev"
+  - "3.7-dev"
+  - "nightly"
 before_install:
   - sudo apt-get install sleuthkit
-  - cd
-  - git clone https://github.com/PoorBillionaire/USN-Journal-Parser.git
-  - cd USN-Journal-Parser
-  - git checkout dev
-  - sudo python setup.py install
+  - sudo pip install usnparser
+  - git clone https://github.com/PoorBillionaire/USN-Record-Carver.git
+  - git cd USN-Record-Carver && git checkout dev && cd
 install:
-  - sudo python setup.py install
+  - sudo python USN-Record-Carver/setup.py install
 script:
-  - sh tests/tests.sh
+  - sh USN-Record-Carver/tests/tests.sh
