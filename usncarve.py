@@ -1,11 +1,21 @@
 #!/usr/bin/python
 
+from __future__ import print_function
+
 import os
 import sys
 import mmap
 import struct
 import contextlib
 from argparse import ArgumentParser
+
+
+def validate_address_space(infile):
+    if os.path.getsize(infile) > sys.maxsize:
+        print("\n[ - ] ERROR: The running Python process does not present a " \
+            "large enough address space to accomodate memory mapping the " \
+            "intput file. Try switching to 64-bit Python.\n",
+            file=sys.stderr)
 
 def carve_usn_records(infile, outfile):
     with contextlib.closing(mmap.mmap(infile.fileno(), 0, access=mmap.ACCESS_READ)) as m:
@@ -33,9 +43,13 @@ def main():
     p.add_argument("-f", "--file", help="Carve USN records from the given file", required=True)
     p.add_argument("-o", "--outfile", help="Output to the given file", required=True)
     args = p.parse_args()
+
     with open(args.file, "rb") as i:
         with open(args.outfile, "ab") as o:
-            carve_usn_records(i, o)
+            try:
+                carve_usn_records(i, o)
+            except ValueError:
+                validate_address_space(args.file)
 
 
 if __name__ == "__main__":
