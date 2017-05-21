@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 unzip tests/usnjrnl.zip
-usncarve/usncarve.py -h
+usncarve.py -h
 usn.py -h
 usncarve/usncarve.py -f usnjrnl.bin -o /tmp/usn-carved.bin
 echo "[ + ] Carve completed"
