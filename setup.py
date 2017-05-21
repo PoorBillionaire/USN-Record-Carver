@@ -25,5 +25,5 @@ setup(
 
     keywords='DFIR NTFS USN Carve Forensics Incident Response Microsoft Windows',
     packages=find_packages(),
-    scripts=['usncarve/usncarve.py'],
+    scripts=['usncarve.py']
 )
