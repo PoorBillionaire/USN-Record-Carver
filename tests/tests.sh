@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-unzip tests/usnjrnl.zip
+unzip USN-Record-Carver/tests/usnjrnl.zip
 usncarve.py -h
 usn.py -h
 usncarve.py -f usnjrnl.bin -o /tmp/usn-carved.bin
